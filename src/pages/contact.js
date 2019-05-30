@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-class App extends Component {
+class Contact extends Component {
   render() {
     return (
         <div>
-          <h2>Welcome to React Router Tutorial</h2>
+          <h2>Contact</h2>
         </div>
     );
   }
 }
 
-export default App;
+export default Contact;
