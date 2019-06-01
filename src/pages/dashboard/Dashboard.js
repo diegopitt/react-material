@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,9 +22,10 @@ import About from '../about';
 import Orders from './Orders';
 import Contact from '../contact';
 import Home from '../home';
-import DashboardIcon from '@material-ui/icons/Dashboard';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import DashboardIcon from '@material-ui/icons/Dashboard';
 const drawerWidth = 160;
 
 const useStyles = makeStyles(theme => ({
@@ -128,63 +129,60 @@ export default function Dashboard() {
         showLabels
         className={classes.SBNav}
       >
-        <BottomNavigationAction label="Recents" icon={<DashboardIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<ShoppingCartIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<PeopleIcon />} />
+        <BottomNavigationAction component={Link} to="/" value="home" label="Home" icon={<DashboardIcon />} />
+        <BottomNavigationAction component={Link} to="/orders" value="orders" label="Orders" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction component={Link} to="/contact" label="contacts" icon={<PeopleIcon />} />
       </BottomNavigation>
     );
   }
   return (
-    <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <MediaQuery query="(min-width: 767px)">
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={handleDrawerOpen}
-              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-            >
-              <MenuIcon />
+    <Router history={Router.hashHistory} >
+      <div className={classes.root}>
+        <CssBaseline />
+        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+          <Toolbar className={classes.toolbar}>
+            <MediaQuery query="(min-width: 767px)">
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="Open drawer"
+                onClick={handleDrawerOpen}
+                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}>
+                <MenuIcon />
+              </IconButton>
+            </MediaQuery>
+            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+              Market
+            </Typography>
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color="secondary">
+                <NotificationsIcon />
+              </Badge>
             </IconButton>
+          </Toolbar>
+          <MediaQuery query="(max-width: 767px)">
+            <SimpleBottomNavigation className={classes.SBNav} />
           </MediaQuery>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Market
-          </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-        </Toolbar>
-        <MediaQuery query="(max-width: 767px)">
-          <SimpleBottomNavigation className={classes.SBNav} />
+        </AppBar>
+        <MediaQuery query="(min-width: 767px)">
+          <Drawer variant="permanent" classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),}} open={open}>
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={handleDrawerClose}>
+                <ChevronLeftIcon />
+              </IconButton>
+            </div>
+            <Divider />
+            <List>{mainListItems}</List>
+          </Drawer>
         </MediaQuery>
-      </AppBar>
-      <MediaQuery query="(min-width: 767px)">
-        <Drawer variant="permanent" classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),}} open={open}>
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-              <ChevronLeftIcon />
-            </IconButton>
-          </div>
-          <Divider />
-          <List>{mainListItems}</List>
-          {/* <Divider />
-          <List>{secondaryListItems}</List> */}
-        </Drawer>
-      </MediaQuery>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Router history={Router.hashHistory} >
-          <Route exact path="/" component={Home}/>
-          <Route exact path="/orders" component={Orders}/>
-          <Route exact path="/about" component={About}/>
-          <Route exact path="/contact" component={Contact}/>
-        </Router>
-      </main>
-    </div>
+        <main className={classes.content}>
+          <div className={classes.appBarSpacer} />
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/orders" component={Orders}/>
+            <Route exact path="/about" component={About}/>
+            <Route exact path="/contact" component={Contact}/>
+        </main>
+      </div>
+    </Router>
   );
 }
