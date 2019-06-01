@@ -11,7 +11,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export const mainListItems = (
   <div>
-    <Router history={Router.hashHistory}>
+    <Router>
       <Link to="/">
         <ListItem button>
           <ListItemIcon>

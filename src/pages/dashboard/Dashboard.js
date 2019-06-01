@@ -145,9 +145,9 @@ export default function Dashboard() {
         <div className={classes.appBarSpacer} />
         <Router history={Router.hashHistory} >
           <Route exact path="/" component={Home}/>
-          <Route path="/orders" component={Orders}/>
-          <Route path="/about" component={About}/>
-          <Route path="/contact" component={Contact}/>
+          <Route exact path="/orders" component={Orders}/>
+          <Route exact path="/about" component={About}/>
+          <Route exact path="/contact" component={Contact}/>
         </Router>
       </main>
     </div>
