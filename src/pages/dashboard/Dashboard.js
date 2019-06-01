@@ -6,7 +6,10 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import List from '@material-ui/core/List';
+import MediaQuery from 'react-responsive';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,13 +17,15 @@ import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems } from './listItems';
 import About from '../about';
 import Orders from './Orders';
 import Contact from '../contact';
 import Home from '../home';
-
-const drawerWidth = 240;
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PeopleIcon from '@material-ui/icons/People';
+const drawerWidth = 160;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -59,6 +64,11 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+  },
+  SBNav:{
+    width: '100%',
+    position: 'fixed',
+    bottom:0
   },
   drawerPaper: {
     position: 'relative',
@@ -106,20 +116,40 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  function SimpleBottomNavigation() {
+    const classes = useStyles();
+    const [value, setValue] = React.useState(0);
+    return (
+        <BottomNavigation
+        value={value}
+        onChange={(event, newValue) => {
+          setValue(newValue);
+        }}
+        showLabels
+        className={classes.SBNav}
+      >
+        <BottomNavigationAction label="Recents" icon={<DashboardIcon />} />
+        <BottomNavigationAction label="Favorites" icon={<ShoppingCartIcon />} />
+        <BottomNavigationAction label="Nearby" icon={<PeopleIcon />} />
+      </BottomNavigation>
+    );
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="Open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
+          <MediaQuery query="(min-width: 767px)">
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={handleDrawerOpen}
+              className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+            >
+              <MenuIcon />
+            </IconButton>
+          </MediaQuery>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             Market
           </Typography>
@@ -129,18 +159,23 @@ export default function Dashboard() {
             </Badge>
           </IconButton>
         </Toolbar>
+        <MediaQuery query="(max-width: 767px)">
+          <SimpleBottomNavigation className={classes.SBNav} />
+        </MediaQuery>
       </AppBar>
-      <Drawer variant="permanent" classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),}} open={open}>
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>{mainListItems}</List>
-        {/* <Divider />
-        <List>{secondaryListItems}</List> */}
-      </Drawer>
+      <MediaQuery query="(min-width: 767px)">
+        <Drawer variant="permanent" classes={{paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),}} open={open}>
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <List>{mainListItems}</List>
+          {/* <Divider />
+          <List>{secondaryListItems}</List> */}
+        </Drawer>
+      </MediaQuery>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Router history={Router.hashHistory} >

@@ -33,7 +33,7 @@ const GET_CITIES = gql`
   const Cities = () => 
   <Query query={GET_CITIES} fetchPolicy="cache-and-network">
   {({ data, loading, refetch }) => loading ?
-      <p>loading users...</p> :
+      <p>loading cities ...</p> :
       data.allCities.map(city => 
         <h3 key={city.name.toString()}>{city.name}</h3>
     ) 

@@ -22,14 +22,14 @@ if (localStorage['apollo-cache-persist']) {
 
 const client = new ApolloClient({ 
   cache,
-  uri: 'http://localhost:4000/graphql', 
+  uri: 'https://aclive-dee69.appspot.com/graphql', 
   request: operation => {
-      operation.setContext(context => ({
-          headers: {
-              ...context.headers,
-              authorization: localStorage.getItem('token')
-          }
-      }))
+    operation.setContext(context => ({
+      headers: {
+          ...context.headers,
+          authorization: localStorage.getItem('token')
+      }
+    }))
   }
 })
 
