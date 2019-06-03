@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Orders from './dashboard/Orders';
+import Orders from './Orders';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',

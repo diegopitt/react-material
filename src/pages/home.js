@@ -6,7 +6,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Deposits from './dashboard/Deposits';
+import Deposits from './Deposits';
+import Promote from './promote/Promote';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -46,6 +47,13 @@ export default function Home() {
     return (
 
       <Container maxWidth="lg" className={classes.container}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={8} lg={9}>
+            <Paper className={fixedHeightPaper}>
+              <Promote />
+            </Paper>
+          </Grid>
+        </Grid>
         <Grid container spacing={3}>
           {/* Chart */}
           <Grid item xs={12} md={8} lg={9}>

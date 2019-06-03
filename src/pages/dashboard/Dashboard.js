@@ -22,12 +22,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import SearchIcon from '@material-ui/icons/Search';
 import { mainListItems } from './listItems';
 import About from '../about';
-import Orders from './Orders';
+import Orders from '../Orders';
 import Contact from '../contact';
 import Home from '../home';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 const drawerWidth = 160;
 
@@ -134,6 +133,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
+    paddingBottom:60
   },
   paper: {
     padding: theme.spacing(2),
@@ -159,14 +159,12 @@ export default function Dashboard() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
     return (
-        <BottomNavigation
-        value={value}
-        onChange={(event, newValue) => {
-          setValue(newValue);
-        }}
-        showLabels
-        className={classes.SBNav}
-      >
+        <BottomNavigation value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+          showLabels
+          className={classes.SBNav}>
         <BottomNavigationAction component={Link} to="/" value="home" label="Home" icon={<DashboardIcon />} />
         <BottomNavigationAction component={Link} to="/orders" value="orders" label="Orders" icon={<ShoppingCartIcon />} />
         <BottomNavigationAction component={Link} to="/contact" label="contacts" icon={<PeopleIcon />} />
@@ -229,10 +227,10 @@ export default function Dashboard() {
         </MediaQuery>
         <main className={classes.content}>
           <div className={classes.appBarSpacer} />
-            <Route exact path="/" component={Home}/>
-            <Route exact path="/orders" component={Orders}/>
-            <Route exact path="/about" component={About}/>
-            <Route exact path="/contact" component={Contact}/>
+          <Route exact path="/" component={Home}/>
+          <Route exact path="/orders" component={Orders}/>
+          <Route exact path="/about" component={About}/>
+          <Route exact path="/contact" component={Contact}/>
         </main>
       </div>
     </Router>
