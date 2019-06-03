@@ -28,6 +28,7 @@ export default function Promote() {
             <TableCell>#</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Letters</TableCell>
+            <TableCell>Actions</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

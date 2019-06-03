@@ -1,17 +1,17 @@
 import React, { Component } from "react";
 import { SimpleButton } from "./SimpleButton";
 import { HooksButton } from "./HooksButton";
-
+import TableCell from '@material-ui/core/TableCell';
 export class Summary extends Component {
 
   render() {
       const props = this.props;        
       return (
         <React.Fragment>
-            <td>{props.index + 1}</td>
-            <td>{props.name}</td>
-            <td>{props.name.length}</td>
-            <td>
+            <TableCell>{props.index + 1}</TableCell>
+            <TableCell>{props.name}</TableCell>
+            <TableCell>{props.name.length}</TableCell>
+            <TableCell>
               <SimpleButton className="btn btn-warning btn-sm m-1"
                 callback={ props.reverseCallback }
                 text={ `Reverse (${ props.name })`}       
@@ -22,7 +22,7 @@ export class Summary extends Component {
                 text={ `Promote (${ props.name})`}
                 { ...this.props }
               />
-            </td>
+            </TableCell>
         </React.Fragment>    
       )
   }
