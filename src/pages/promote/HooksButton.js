@@ -17,7 +17,7 @@ export function HooksButton(props) {
   }  
 
   return (
-      <Button variant="contained" onClick={ handleClick }  color="primary" className={ classes.button } >
+      <Button size="small" variant="contained" onClick={ handleClick }  color="primary" className={ classes.button } >
         { props.text} { props.counter }
       </Button>        
   )

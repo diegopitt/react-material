@@ -8,18 +8,18 @@ export class Summary extends Component {
       const props = this.props;        
       return (
         <React.Fragment>
-            <TableCell>{props.index + 1}</TableCell>
+            {/* <TableCell>{props.index + 1}</TableCell> */}
             <TableCell>{props.name}</TableCell>
             <TableCell>{props.name.length}</TableCell>
             <TableCell>
               <SimpleButton className="btn btn-warning btn-sm m-1"
                 callback={ props.reverseCallback }
-                text={ `Reverse (${ props.name })`}       
+                text={ `Reverse ${ props.name }`}       
                 { ...this.props }
               />
               <HooksButton className="btn btn-info btn-sm m-1"
                 callback={ () => props.promoteCallback(props.name)}
-                text={ `Promote (${ props.name})`}
+                text={ `Promote ${ props.name}`}
                 { ...this.props }
               />
             </TableCell>

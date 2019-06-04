@@ -19,7 +19,7 @@ export function SimpleButton(props) {
   }  
 
   return (
-    <Button variant="contained" color="secondary" onClick={ handleClick } className={ classes.button } disabled={props.disabled === "true" || props.disabled === true }> 
+    <Button size="small" variant="contained" color="secondary" onClick={ handleClick } className={ classes.button } disabled={props.disabled === "true" || props.disabled === true }> 
     {props.text} {props.counter}
   </Button>      
   )
